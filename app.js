@@ -14,8 +14,6 @@ connectDB(); // Connect to MongoDB
 const app = express();
 app.use(express.json());
 
-// Catch preflight requests
-app.options('*', cors());
 
 app.use(cors({
   origin: ['http://localhost:5173'], // Add the correct URLs here
