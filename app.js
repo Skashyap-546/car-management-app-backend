@@ -46,5 +46,9 @@ export const upload = multer({ storage });
 app.use('/api/auth', authRoutes);
 app.use('/api/cars', carRoutes);
 
+app.get('/api/docs', (req, res) => {
+  res.redirect('https://documenter.getpostman.com/view/38597339/2sAYBPkZvU'); // Replace with your Postman Docs URL
+});
+
 const PORT = process.env.PORT;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
