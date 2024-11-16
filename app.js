@@ -17,7 +17,7 @@ app.use(express.json());
 
 const allowedOrigins = [
   'http://localhost:5173', // For local development
-  'https://car-management-app-ten.vercel.app', // Your Vercel frontend URL
+  'https://car-management-4gb83us6h-skashyap-546s-projects.vercel.app', // Your Vercel frontend URL
 ];
 
 app.use(cors({
