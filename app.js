@@ -13,26 +13,15 @@ connectDB(); // Connect to MongoDB
 
 const app = express();
 app.use(express.json());
-const allowedOrigins = [
-  'http://localhost:5173', // For local testing
-  // Replace with the actual deployed URL when live
-];
 
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      // Allow requests with no origin (like mobile apps or Postman)
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error('CORS not allowed for this origin'), false);
-      }
-    },
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowing necessary methods
-    allowedHeaders: ['Content-Type', 'Authorization'], // Allowing these headers
-    credentials: true, // Allow credentials (cookies, etc.)
-  })
-);
+// Catch preflight requests
+app.options('*', cors());
+
+app.use(cors({
+  origin: ['http://localhost:5173'], // Add the correct URLs here
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true, // Allow cookies if needed
+}));
 
 // Serve static files from the 'uploads' directory
 const __dirname = path.resolve();
