@@ -15,12 +15,21 @@ const app = express();
 app.use(express.json());
 
 
-app.use(cors({
-  origin: ['http://localhost:5173','https://car-management-h0f9nqlek-skashyap-546s-projects.vercel.app/'], // Add the correct URLs here
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true, // Allow cookies if needed
-}));
+const allowedOrigins = [
+  'http://localhost:5173', // For local development
+  'https://car-management-app-ten.vercel.app', // Your Vercel frontend URL
+];
 
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true); // Allow the request
+    } else {
+      callback(new Error('Not allowed by CORS')); // Reject the request
+    }
+  },
+  credentials: true, // If you're using cookies
+}));
 // Serve static files from the 'uploads' directory
 const __dirname = path.resolve();
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
