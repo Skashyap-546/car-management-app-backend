@@ -16,7 +16,7 @@ app.use(express.json());
 
 
 app.use(cors({
-  origin: ['http://localhost:5173'], // Add the correct URLs here
+  origin: ['http://localhost:5173','https://car-management-h0f9nqlek-skashyap-546s-projects.vercel.app/'], // Add the correct URLs here
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true, // Allow cookies if needed
 }));
